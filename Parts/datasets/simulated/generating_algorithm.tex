@@ -1,0 +1,37 @@
+\begin{algorithm}[htbp]
+    \caption{Dataset simulation.}
+    \label{alg:simulated_data_sets}
+
+    \Indentp{0.5em}
+
+    \KwData  {$S$ \tcp*{list of speakers}}
+    \KwDataXX{$U=\{U_{s}\}_{s \in S}$ \tcp*{list of utterances}}
+    \KwDataXX{$N_{conv}, N_{conv\_spk}$ \tcp*{\# conversations and \# spks. each}}
+    \KwDataXX{$N_{utt}^{min}$  \tcp*{min \# utterances per spk. in a conversation}}
+    \KwDataXX{$N_{utt}^{max}$ \tcp*{max \# utterances per spk. in a conversation}}
+
+
+    \KwResult{$C$ \tcp*{set of simulated conversations}}
+
+    $C \gets \emptyset$ \;
+    \For{$i \gets 0;\ i < N_{conv};\ i \gets i + 1$}{
+        Random sample $\tilde{S}_{i}$ from $S$, with %
+            $\tilde{S}_{i}=\{ s_{p} \vert s_{p} \in S ,0 \leq p < N_{conv\_spk} \}$ \;
+
+        $\tilde{U}_{i} \gets \emptyset$ \;
+        \For{$j \gets 0;\ j < N_{conv\_spk};\ j \gets j + 1$}{
+            Randomize $K_{ij}$, $N_{utt}^{min} \leq K_{ij} < N_{utt}^{max}$ \;
+            Random sample $\tilde{U}_{ij}$ from $U_{s}$, with %
+                $\tilde{U}_{ij}=\{ u_{p} \vert u_{p} \in U_{s=\tilde{S}_{i}[j]} ,0 \leq p < K_{ij} \}$ \;
+            $\tilde{U}_{i} \gets \tilde{U}_{i} \cup \tilde{U}_{ij}$ \;
+            Break while loop \;
+        }
+        Add in-between silent utterances of 2 seconds into $\tilde{U}_{i}$ \;
+        Shuffle $\tilde{U}_{i}$ \;
+        $C_{i} \gets $ Concatenate utterances $\tilde{U}_{i}$ \;
+        $C.add(C_{i})$\;
+    }
+
+    \Return{$C$}
+
+\end{algorithm}

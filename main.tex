@@ -1,0 +1,68 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% citations
+\usepackage[backend=bibtex, sorting=none]{biblatex}
+\addbibresource{Bib.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% tables
+% \usepackage{booktabs}
+
+    % The new commands
+    % \newcommand{\midsepremove}{\aboverulesep = 2mm \belowrulesep = 0mm}
+    % \midsepremove
+    \renewcommand{\arraystretch}{1.4}
+
+\usepackage{array}
+\newcolumntype{S}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+  #1\ignorespaces
+}
+
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{tabular}{\begin{footnotesize}}
+\AfterEndEnvironment{tabular}{\end{footnotesize}}
+
+% algorithm
+\usepackage{xcolor}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\newcommand\mycommfont[1]{\footnotesize\fontfamily{serif}\textcolor{black}{#1}}
+\SetCommentSty{mycommfont}
+
+%% souce : https://tex.stackexchange.com/questions/120188/how-to-avoid-the-number-line-for-comments-under-algorithm2e
+\makeatletter
+\algocf@newcommand{KwDataXX}[1]{%
+  \sbox\algocf@inputbox{\hbox{\KwSty{Data}\algocf@typo: }}%
+  \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\everypar={\relax}}%
+  {\let\\\algocf@newinput\hspace{\wd\algocf@inputbox}\hangindent=\wd\algocf@inputbox\hangafter=\wd\algocf@inputbox#1\par}%
+  \algocf@linesnumbered% reset the numbering of the lines
+}
+\makeatother
+
+\SetKw{KwBy}{by}
+\SetKwProg{Try}{try}{:}{}
+\SetKwProg{Catch}{catch}{:}{end}
+
+
+% spacing
+\usepackage{setspace}
+
+
+\begin{document}
+
+
+
+
+
+\end{document}
